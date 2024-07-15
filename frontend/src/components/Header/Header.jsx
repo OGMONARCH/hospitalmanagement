@@ -11,6 +11,7 @@ const navLinks = [
   { path: '/doctors', display: 'Find a Doctor' },
   { path: '/services', display: 'Services' },
   { path: '/contact', display: 'Contact' },
+  
 ];
 
 const Header = () => {

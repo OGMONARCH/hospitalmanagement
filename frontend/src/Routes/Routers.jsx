@@ -6,6 +6,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import Contact from "../pages/Contactpage/Contact";
 import Doctors from "../pages/Doctors/Doctors";
 import DoctorsDetails from "../pages/Doctors/DoctorsDetails";
+
 // import NotFound from "../pages/NotFound/NotFound"; // Create a NotFound component
 
 const Routers = () => {
@@ -18,7 +19,7 @@ const Routers = () => {
       <Route path="/contact" element={<Contact />} />
       <Route path="/services" element={<Services />} />
       <Route path="/doctors" element={<Doctors />} />
-      <Route path="/doctorsdetails" element={<DoctorsDetails />} />
+      <Route path="/doctors/doctorsdetails" element={<DoctorsDetails />} />
       {/* <Route path="*" element={<NotFound />} /> */}
     </Routes>
   );

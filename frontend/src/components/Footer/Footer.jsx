@@ -8,7 +8,7 @@ import logo from '../../assets/images/logo.png';
 const socialLinks = [
   {  
     path: "https://www.youtube.com",
-    icon: <AiFillYoutube className='group hover:text-black w-4 h-5' />,
+    icon: <AiFillYoutube className='group-hover:text-white w-4 h-5' />,
   },
   {  
     path: "https://www.github.com",
@@ -60,6 +60,10 @@ const quickLinks02 = [
     path: '/', 
     display: 'Get a Opinion' 
   },
+  { 
+    path: '/doc-info', 
+    display: 'Get doc info' 
+  },
 ];
 
 const quickLinks03 = [
@@ -74,6 +78,7 @@ const quickLinks03 = [
 ];
 
 const Footer = () => {
+  
   const year = new Date().getFullYear();
 
   return (

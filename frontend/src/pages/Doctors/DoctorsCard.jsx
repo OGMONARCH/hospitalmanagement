@@ -45,7 +45,7 @@ const DoctorsCard = ({doctor}) => {
             </div>
             
 
-            <Link to='/doctors' className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px]  flex items-center justify-center group hover:bg-primaryColor hover:border-none">
+            <Link to='/doctors/doctorsdetails' className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px]  flex items-center justify-center group hover:bg-primaryColor hover:border-none">
                 <FaArrowRight />
             </Link>
         </div>
