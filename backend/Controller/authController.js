@@ -3,6 +3,12 @@ import Doctor from '../models/DoctorSchema';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
+const generateToken = (user) => {
+    return jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET_KEY, {
+        expiresIn: '1h', // Set token expiration as needed
+    });
+};
+
 export const register = async (req, res) => {
     const { email, password, name, role, photo, gender } = req.body;
 
@@ -46,15 +52,46 @@ export const register = async (req, res) => {
 
         await user.save();
 
-        res.status(200).json({ success: true, message: 'User successfully created' });
+        const token = generateToken(user);
+
+        res.status(200).json({ success: true, message: 'User successfully created', token });
     } catch (err) {
         res.status(500).json({ success: false, message: 'Internal server error, Try again' });
     }
 };
 
 export const login = async (req, res) => {
+    const { email, password } = req.body;
+
     try {
-        // Add login logic here
+        let user = null;
+
+        const patient = await User.findOne({ email });
+        const doctor = await Doctor.findOne({ email });
+
+        if (patient) {
+            user = patient;
+        }
+        if (doctor) {
+            user = doctor;
+        }
+
+        // Check if user exists or not
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Compare password
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
+
+        if (!isPasswordMatch) {
+            return res.status(401).json({ message: 'Invalid credentials' });
+        }
+
+        // Generate token
+        const token = generateToken(user);
+
+        res.status(200).json({ success: true, message: 'Login successful', token });
     } catch (err) {
         res.status(500).json({ success: false, message: 'Internal server error, Try again' });
     }
